@@ -4,22 +4,19 @@ class Solution {
             return false;
         }
         else{
-        StringBuilder str = new StringBuilder(t);
-        int flag=0;
+        int count[]=new int[256];
         for(int i=0;i<s.length();i++){
-            flag=0;
-            for(int j=0;j<str.length();j++){
-                if(s.charAt(i)==str.charAt(j)){
-                    str.setCharAt(j,'0');
-                    flag=1;
-                    break;
-                }
-            }
-            if(flag==0){
-                break;
+            count[s.charAt(i)]++;
+        }
+        for(int i=0;i<t.length();i++){
+            count[t.charAt(i)]--;
+        }
+        for(int i=0;i<256;i++){
+            if(count[i]!=0){
+                return false;
             }
         }
-        return true ? flag==1 : false;
         }
+        return true;
     }
 }
