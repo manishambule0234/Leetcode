@@ -1,13 +1,20 @@
 class Solution {
     public int maxSubArray(int[] nums) {
-        int count=(int)((-1*(Math.pow(10,4)))-1);
-        for(int i=0;i<nums.length;i++){
-            int sum=0;
-            for(int j=i;j<nums.length;j++){
-                sum=sum+nums[j];
-                count=Math.max(sum,count);
+        int maxSum = Integer.MIN_VALUE;
+        int currentSum = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+            
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+            }
+            
+            if (currentSum < 0) {
+                currentSum = 0;
             }
         }
-        return count;
+        
+        return maxSum;
     }
 }
