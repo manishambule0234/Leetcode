@@ -34,7 +34,7 @@ class Solution {
         ListNode curr = dummy;
 
         while (!pq.isEmpty()) {
-            Pair top = pq.poll();
+            Pair top = pq.remove();
             curr.next = top.node;
             curr = curr.next;
 
