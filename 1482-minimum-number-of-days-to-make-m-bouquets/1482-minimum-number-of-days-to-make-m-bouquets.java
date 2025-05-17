@@ -28,8 +28,7 @@ class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
         if(bloomDay.length<(long)m*k)
         return -1;
-        int[] arr=new int[bloomDay.length];
-        Arrays.fill(arr,0);
+
         int li=Integer.MAX_VALUE;
         int ri=0;
         for(int ele: bloomDay){
@@ -40,7 +39,7 @@ class Solution {
         int ans=Integer.MAX_VALUE;  
     while(li<=ri){
             int mid=(li+ri)/2;
-            arr = new int[bloomDay.length]; // reset arr
+           int[] arr = new int[bloomDay.length]; // reset arr
             updatearr(bloomDay, arr, mid);
 
            boolean t= checkvalid(arr,k,m);
