@@ -8,6 +8,6 @@ class Solution {
         if(i>0)
         sb.append(" ");
       }
-      return sb.toString().trim;;
+      return sb.toString().trim();
     }
 }
