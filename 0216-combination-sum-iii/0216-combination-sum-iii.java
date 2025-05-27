@@ -7,24 +7,20 @@ class Solution {
         return res;
     }
 public static void sum(List<List<Integer>> res, List<Integer> temp, int k, int n, int idx) {
+    if (temp.size() > k || n < 0) {
+        return; // Prune invalid paths early
+    }
 
-        if (n == 0 && temp.size() == k) {
-        res.add(new ArrayList<>(temp));
+    if (n == 0 && temp.size() == k) {
+        res.add(new ArrayList<>(temp)); // Only add if both sum and size are valid
         return;
     }
 
-    
-    if (n < 0 || temp.size() > k || idx > 9) return;
-
-
-
-    // Choose idx
-    temp.add(idx);
-    sum(res, temp, k, n - idx, idx + 1);
-    temp.remove(temp.size() - 1);
-
-    // Don't choose idx
-    sum(res, temp, k, n, idx + 1);
+    for (int i = idx; i <= 9; i++) {
+        temp.add(i);
+        sum(res, temp, k, n - i, i + 1); // i+1 to avoid reusing the same number
+        temp.remove(temp.size() - 1); // Backtrack
+    }
 }
 
 
