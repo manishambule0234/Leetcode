@@ -6,22 +6,22 @@ class Solution {
         sum(res,temp,k,n,1);
         return res;
     }
-    public static void sum(List<List<Integer>> res,List<Integer> temp,int k,int n,int idx){
-        if(idx>9){
-            return;
-        }
-        if(temp.size()>k||n<0)
-        return;
-        if(n==0&& temp.size() == k){
-            res.add(new ArrayList<>(temp));
-            return;
-        }
-
-        temp.add(idx);
-        System.out.println(temp);
-        sum(res,temp,k,n-idx,idx+1);
-        temp.remove(temp.size()-1);
-        sum(res, temp, k, n, idx + 1);
-
+public static void sum(List<List<Integer>> res, List<Integer> temp, int k, int n, int idx) {
+    if (temp.size() > k || n < 0) {
+        return; // Prune invalid paths early
     }
+
+    if (n == 0 && temp.size() == k) {
+        res.add(new ArrayList<>(temp)); // Only add if both sum and size are valid
+        return;
+    }
+
+    for (int i = idx; i <= 9; i++) {
+        temp.add(i);
+        sum(res, temp, k, n - i, i + 1); // i+1 to avoid reusing the same number
+        temp.remove(temp.size() - 1); // Backtrack
+    }
+}
+
+
 }
